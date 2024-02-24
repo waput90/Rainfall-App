@@ -4,6 +4,6 @@ namespace Rainfall.API.Services.Abstract
 {
     public interface IRainfallService
     {
-        Task<RainfallResponse> GetRainfallResponse(string stationId);
+        Task<RainfallResponse> GetRainfallResponse(string stationId, int count);
     }
 }

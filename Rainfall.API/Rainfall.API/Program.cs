@@ -1,4 +1,6 @@
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
+using Rainfall.API.Middleware;
 using Rainfall.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,13 +14,14 @@ service.AddControllers();
 service.AddEndpointsApiExplorer();
 service.AddSwaggerGen(g =>
 {
-    g.SwaggerDoc("Rainfall Api", new OpenApiInfo
+    g.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Rainfall Api",
-        Version = "3.0.1"
+        Version = "v1"
     });
 });
 service.RegisterService();
+service.AddTransient<ApiRequestMiddleware>();
 
 var app = builder.Build();
 
@@ -32,6 +35,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ApiRequestMiddleware>();
 
 app.MapControllers();
 

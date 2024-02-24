@@ -15,13 +15,13 @@ namespace Rainfall.API.Services.Concrete
             _clientFactory = clientFactory;
         }
 
-        public async Task<RainfallResponse> GetRainfallResponse(string stationId)
+        public async Task<RainfallResponse> GetRainfallResponse(string stationId, int count)
         {
             try
             {
                 var client = CreateClient();
 
-                var response = await client.GetAsync($"/flood-monitoring/id/stations/{stationId}/readings?_sorted&_limit=100");
+                var response = await client.GetAsync($"/flood-monitoring/id/stations/{stationId}/readings?_sorted&_limit={count}");
 
                 if (response.Content != null)
                 {

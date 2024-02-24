@@ -15,11 +15,11 @@ namespace Rainfall.API.Controllers
         }
 
         [HttpGet("id/{stationId}/readings")]
-        public async Task<ActionResult> GetReadings(string stationId = "10")
+        public async Task<ActionResult> GetReadings(string stationId, int count = 10)
         {
-            var a = await _rainfallService.GetRainfallResponse(stationId);
+            var a = await _rainfallService.GetRainfallResponse(stationId, count);
             return Ok(a);
         }
-
+        
     }
 }

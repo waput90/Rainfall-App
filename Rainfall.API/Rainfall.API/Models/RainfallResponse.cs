@@ -1,10 +1,11 @@
 ﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Rainfall.API.Models
 {
     public class RainfallResponse
     {
-        [JsonPropertyName("@context")]
+        [JsonProperty("@context")]
         public string Context { get; set; }
         public RainfallMeta Meta { get; set; }
         public RainfallItem[] Items { get; set; }
@@ -23,7 +24,7 @@ namespace Rainfall.API.Models
 
     public class RainfallItem
     {
-        [JsonPropertyName("@id")]
+        [JsonProperty("@id")]
         public string Id { get; set; }
         public string DateTime { get; set; }
         public string Measure { get; set; }
